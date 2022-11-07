@@ -9,9 +9,10 @@ import { Profile } from '../components/Profile';
 // https://docs.astro.build/core-concepts/astro-components/
 // TODO: いらないスタイル消す
 // TODO: 配色統一感
+// TODO: 略歴 https://mui.com/material-ui/react-timeline/
 ---
 
-<html lang="en">
+<html lang="ja">
   <head>
     <MainHead
       title="kmtym1998"
@@ -105,7 +106,7 @@ import { Profile } from '../components/Profile';
 
       .sectionTitle {
         font-weight: 700;
-        font-size: var(--f-u8);
+        font-size: var(--f-u3);
         margin-top: 4rem;
         margin-bottom: 2rem;
       }
@@ -191,9 +192,32 @@ import { Profile } from '../components/Profile';
         font-size: var(--f-u4);
       }
 
-      .buttonContainer {
+      .metricsContainer {
         text-align: center;
-        margin-top: 2em;
+        justify-content: space-around;
+      }
+
+      @media (max-width: 750px) {
+        .metricsRow {
+          width: 100%;
+        }
+        .metricsContainer {
+          display: block;
+        }
+      }
+      @media (min-width: 750px) {
+        .metricsRow {
+          width: 48%;
+        }
+        .metricsContainer {
+          display: flex;
+        }
+      }
+
+      .metricsImg {
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
       }
     </style>
   </head>
@@ -243,34 +267,36 @@ import { Profile } from '../components/Profile';
 
       <div class="section">
         <h3 id="GitHubMetrics" class="sectionTitle">GitHub 活動状況</h3>
-        <img
-          alt="🦑"
-          src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/general.svg"
-          width="100%"
-          height="auto"
-        />
-        <img
-          width="100%"
-          src="https://github-readme-stats.vercel.app/api?username=kmtym1998&count_private=true&show_icons=true&theme=vue"
-          alt="🦑"
-        />
-        <img
-          alt="🦑"
-          src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/metrics.plugin.repositories.svg"
-          width="100%"
-          height="auto"
-        />
-        <img
-          alt="🦑"
-          src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/metrics.plugin.reactions.svg"
-          width="100%"
-          height="auto"
-        />
-        <img
-          alt="🦑"
-          src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/achievements.svg"
-          width="100%"
-        />
+
+        <div class="metricsContainer">
+          <div class="metricsRow">
+            <img
+              alt="🦑"
+              src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/general.svg"
+              class="metricsImg"
+            />
+          </div>
+
+          <div class="metricsRow">
+            <a href="https://github.com/kmtym1998/hasuraenv" target="_blank">
+              <img
+                alt="🦑"
+                src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/metrics.plugin.repositories.svg"
+                class="metricsImg"
+              />
+            </a>
+            <img
+              alt="🦑"
+              src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/metrics.plugin.reactions.svg"
+              class="metricsImg"
+            />
+            <img
+              alt="🦑"
+              src="https://raw.githubusercontent.com/kmtym1998/kmtym1998/main/achievements.svg"
+              class="metricsImg"
+            />
+          </div>
+        </div>
       </div>
     </main>
 
