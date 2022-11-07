@@ -31,6 +31,7 @@ func Greet() {
           borderRadius: 10,
           backgroundColor: '#05091e',
           padding: '2rem',
+          fontFamily: 'Roboto Mono',
         }}
       >
         {code}
