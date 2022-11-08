@@ -17,13 +17,8 @@
   },
   "devDependencies": {
     "@astrojs/react": "^1.2.2",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.9",
-    "@mui/lab": "^5.0.0-alpha.107",
-    "@mui/material": "^5.10.13",
-    "@mui/styled-engine": "^5.10.8",
     "@types/prettier": "^2.7.1",
+    "antd": "^4.24.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yaml": "^2.1.3"
