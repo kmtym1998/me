@@ -4,12 +4,12 @@ import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { Profile } from '../components/Profile';
+import { History } from '../components/History';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 // TODO: いらないスタイル消す
 // TODO: 配色統一感
-// TODO: 略歴 https://mui.com/material-ui/react-timeline/
 ---
 
 <html lang="ja">
@@ -219,6 +219,11 @@ import { Profile } from '../components/Profile';
         max-width: 600px;
         text-align: center;
       }
+
+      .historyContainer {
+        margin-left: -80%;
+        margin-bottom: -50px;
+      }
     </style>
   </head>
 
@@ -253,9 +258,10 @@ import { Profile } from '../components/Profile';
 
       <div class="section">
         <h3 id="History" class="sectionTitle">略歴</h3>
-        <p class="bio">
-          こんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちは
-        </p>
+
+        <div class="historyContainer">
+          <History />
+        </div>
       </div>
 
       <div class="section">
