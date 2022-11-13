@@ -219,11 +219,6 @@ import { History } from '../components/History';
         max-width: 600px;
         text-align: center;
       }
-
-      .historyContainer {
-        margin-left: -80%;
-        margin-bottom: -50px;
-      }
     </style>
   </head>
 
@@ -253,11 +248,11 @@ import { History } from '../components/History';
     </header>
 
     <main class="wrapper">
-      <h3 id="Profile" class="sectionTitle">プロフィール</h3>
+      <h2 id="Profile" class="sectionTitle">プロフィール</h2>
       <Profile client:load />
 
       <div class="section">
-        <h3 id="History" class="sectionTitle">略歴</h3>
+        <h2 id="History" class="sectionTitle">略歴</h2>
 
         <div class="historyContainer">
           <History />
@@ -272,7 +267,7 @@ import { History } from '../components/History';
       </div>
 
       <div class="section">
-        <h3 id="GitHubMetrics" class="sectionTitle">GitHub 活動状況</h3>
+        <h2 id="GitHubMetrics" class="sectionTitle">GitHub 活動状況</h2>
 
         <div class="metricsContainer">
           <div class="metricsRow">
