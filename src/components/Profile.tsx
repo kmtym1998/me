@@ -8,6 +8,11 @@ export const Profile = () => {
   useEffect(() => {
     hljs.highlightAll();
   });
+  const now = new Date();
+  const birthday = new Date('1998-09-09');
+  const age = Math.floor(
+    (now.getTime() - birthday.getTime()) / 1000 / 60 / 60 / 24 / 365,
+  );
   const code = `package profile
 
 import "fmt"
@@ -17,8 +22,8 @@ func Greet() {
 		"familyName": "小松山",
 		"givenName":  "凌平",
 		"job":        "ソフトウェアエンジニア",
-		"birthday":   "1998/09/09",
-		"likes":      []string{"Go", "Spotify", "鈴カステラ"},
+		"age":        ${age},
+		"likes":      []string{"Go", "Spotify", "油そば"},
 		"dislikes":   []string{"生もの", "熱いもの", "早起き"},
 	}
 	fmt.Printf("こんにちは%s%sです", me["familyName"], me["givenName"])
