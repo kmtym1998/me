@@ -1,0 +1,39 @@
+.container {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  display: flex;
+  width: 100%;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  padding: 0 5px;
+  font-size: 0.9em;
+  color: #4682b4;
+}
+
+.description {
+  position: absolute;
+  max-width: 120px;
+  left: 50%;
+  bottom: 80%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 3px;
+  background-color: #666;
+  font-size: var(--f-d1);
+  color: #fff;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: 0.3s all;
+}
+
+.tooltip:hover .description {
+  bottom: 90%;
+  visibility: visible;
+  opacity: 1;
+}

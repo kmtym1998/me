@@ -5,6 +5,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { Profile } from '../components/Profile';
 import { History } from '../components/History';
+import { SkillSets } from '../components/SkillSets';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -262,7 +263,7 @@ import { History } from '../components/History';
       <div class="section">
         <h4 id="Skills" class="sectionTitle">スキル</h4>
         <p class="bio">
-          こんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちは
+          <SkillSets client:load />
         </p>
       </div>
 
