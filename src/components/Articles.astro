@@ -1,86 +1,116 @@
 ---
-import articlesData from '../configs/articles.json';
-import { load } from 'cheerio';
+import articlesData from '../articlesConfig/config.json';
+import { getPageOGPMetadata } from '../articlesConfig/getOGPMetadata';
+import type { Metadata } from '../articlesConfig/type';
+import { ArticleCard } from './ArticleCard';
 
 type ArticleConfig = {
-  items: ArticleItem[];
+  items: Item[];
   type: 'article';
 };
 
-type ArticleItem = {
+type Item = {
   source: string;
-  urls: string[];
+  articles: Article[];
 };
 
-type ReadArticleResult = {
-  source: string;
-  title: string;
-  url: string;
-  imageUrl?: string;
+type Article = {
+  href: string;
+  publishedDate: string;
 };
 
-const readArticles = async (): Promise<ReadArticleResult[]> => {
+type ReadArticleMetadataResult = {
+  article: Article;
+  metadata: Metadata;
+};
+
+const listArticleMetadata = async (): Promise<ReadArticleMetadataResult[]> => {
   const articleConfig = articlesData as ArticleConfig;
 
-  const list: ReadArticleResult[] = [];
+  const flattenArticles: Article[] = [];
   articleConfig.items.forEach((item) => {
-    item.urls.forEach((url) => {
-      list.push({
-        source: item.source,
-        title: '',
-        url,
-      });
+    item.articles.forEach((article) => {
+      flattenArticles.push(article);
     });
   });
 
   const responses = await Promise.allSettled(
-    list.map(async (item) => {
-      const respText = await fetch(item.url).then((resp) => {
-        return resp.text();
-      });
-
+    flattenArticles.map(async (item) => {
+      const metadata = await getPageOGPMetadata(item.href);
       return {
-        text: respText,
-        url: item.url,
+        article: item,
+        metadata,
       };
     }),
   );
 
-  const results: ReadArticleResult[] = [];
+  const metadataList: ReadArticleMetadataResult[] = [];
   responses.forEach((resp) => {
     if (resp.status == 'fulfilled') {
-      const $ = load(resp.value.text);
-      const title = $('title').text();
-
-      const item = list.find((el) => {
-        return el.url === resp.value.url;
-      });
-      if (!item) return;
-
-      item.title = title;
-
-      results.push(item);
+      metadataList.push(resp.value);
     }
   });
 
-  return results;
+  return metadataList;
 };
 
-const articles = await readArticles();
+const readMetadataResults = await listArticleMetadata();
+const sortedReadMetadataResults = readMetadataResults.sort((a, b) => {
+  const dateA = new Date(a.article.publishedDate);
+  const dateB = new Date(b.article.publishedDate);
+
+  return dateB.getTime() - dateA.getTime();
+});
 ---
 
-<ul>
+<div class="cardContainer">
   {
-    articles.map((item) => {
+    sortedReadMetadataResults.map((item) => {
       return (
-        <li>
-          <a href={item.url} target="_blank">
-            {item.title}
-          </a>
-        </li>
+        <div class="card">
+          <ArticleCard
+            metadata={item.metadata}
+            date={item.article.publishedDate}
+            bodyStyle={{
+              paddingTop: 20,
+              paddingLeft: 8,
+              paddingRight: 8,
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              maxWidth: '100%',
+              overflow: 'hidden',
+              fontSize: '0.8735804647362989em',
+            }}
+          />
+        </div>
       );
     })
   }
-</ul>
+</div>
 
-<style></style>
+<style>
+  .cardContainer {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .card {
+    max-width: 500px;
+    margin: 5px 0;
+  }
+
+  @media (max-width: 750px) {
+    .card {
+      width: 95%;
+    }
+  }
+  @media (min-width: 750px) {
+    .card {
+      width: 49%;
+    }
+  }
+</style>

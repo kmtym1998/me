@@ -12,15 +12,18 @@
   },
   "dependencies": {
     "@types/golang-wasm-exec": "^1.15.0",
-    "astro": "^1.6.0",
+    "astro": "^1.6.10",
     "babel": "^6.23.0",
     "highlight.js": "^11.6.0"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
     "@astrojs/react": "^1.2.2",
+    "@types/jsdom": "^20.0.1",
+    "@types/node": "^18.11.9",
     "antd": "^4.24.1",
     "cheerio": "^1.0.0-rc.12",
+    "jsdom": "^20.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yaml": "^2.1.3"
