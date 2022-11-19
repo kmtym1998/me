@@ -2,10 +2,12 @@
   <a class="link" href="/me/">
     <div class="monogram">KR</div>
   </a>
-  <a class="link" href="#Profile"> プロフィール</a>
-  <a class="link" href="#History"> 略歴</a>
-  <a class="link" href="#Skills"> スキル</a>
-  <a class="link" href="#GitHubMetrics"> アクティビティ</a>
+
+  <a class="link navigation" href="#Profile"> プロフィール</a>
+  <a class="link navigation" href="#History"> 略歴</a>
+  <a class="link navigation" href="#Skills"> スキル</a>
+  <a class="link navigation" href="#Articles"> 記事</a>
+  <a class="link navigation" href="#GitHubMetrics"> アクティビティ</a>
 
   <div class="socials">
     <a class="social" href="https://github.com/kmtym1998" target="_blank">
@@ -54,6 +56,14 @@
     padding: 1rem;
   }
 
+  @media (max-width: 750px) {
+    .navigation {
+      display: none !important;
+    }
+    .social {
+      margin-left: 10px;
+    }
+  }
   .link {
     color: var(--t-subdue);
     display: block;
