@@ -1,0 +1,86 @@
+---
+import articlesData from '../configs/articles.json';
+import { load } from 'cheerio';
+
+type ArticleConfig = {
+  items: ArticleItem[];
+  type: 'article';
+};
+
+type ArticleItem = {
+  source: string;
+  urls: string[];
+};
+
+type ReadArticleResult = {
+  source: string;
+  title: string;
+  url: string;
+  imageUrl?: string;
+};
+
+const readArticles = async (): Promise<ReadArticleResult[]> => {
+  const articleConfig = articlesData as ArticleConfig;
+
+  const list: ReadArticleResult[] = [];
+  articleConfig.items.forEach((item) => {
+    item.urls.forEach((url) => {
+      list.push({
+        source: item.source,
+        title: '',
+        url,
+      });
+    });
+  });
+
+  const responses = await Promise.allSettled(
+    list.map(async (item) => {
+      const respText = await fetch(item.url).then((resp) => {
+        return resp.text();
+      });
+
+      return {
+        text: respText,
+        url: item.url,
+      };
+    }),
+  );
+
+  const results: ReadArticleResult[] = [];
+  responses.forEach((resp) => {
+    if (resp.status == 'fulfilled') {
+      const $ = load(resp.value.text);
+      const title = $('title').text();
+
+      const item = list.find((el) => {
+        return el.url === resp.value.url;
+      });
+      if (!item) return;
+
+      item.title = title;
+
+      results.push(item);
+    }
+  });
+
+  return results;
+};
+
+const articles = await readArticles();
+---
+
+<ul>
+  {
+    articles.map((item) => {
+      return (
+        <li>
+          <a href={item.url} target="_blank">
+            {item.title}
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style></style>
