@@ -106,9 +106,9 @@ export const SkillSets: React.FC = () => {
 
   return (
     <div className="container">
-      {skills.map((item) => {
+      {skills.map((item, i) => {
         return (
-          <div className="tooltip">
+          <div className="tooltip" key={String(i) + item.name}>
             <Progress
               type="circle"
               className="skill"
