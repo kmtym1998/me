@@ -26,7 +26,7 @@ func Greet() {
 		"likes":      []string{"Go", "Spotify", "油そば"},
 		"dislikes":   []string{"生もの", "熱いもの", "早起き"},
 	}
-	fmt.Printf("こんにちは%s%sです", me["familyName"], me["givenName"])
+	fmt.Printf("こんにちは。%s%sです", me["familyName"], me["givenName"])
 }`;
 
   return (
