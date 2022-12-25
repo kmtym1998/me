@@ -96,13 +96,23 @@ const sortedReadMetadataResults = readMetadataResults.sort((a, b) => {
     display: -o-flex;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
   }
+  @media (max-width: 750px) {
+    .cardContainer {
+      justify-content: space-around;
+    }
+  }
+  @media (min-width: 750px) {
+    .cardContainer {
+      padding: 20px;
+      justify-content: space-between;
+    }
+  }
+
   .card {
     max-width: 500px;
     margin: 5px 0;
   }
-
   @media (max-width: 750px) {
     .card {
       width: 95%;
