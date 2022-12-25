@@ -1,6 +1,6 @@
 # me
 
-[![Deploy](https://github.com/kmtym1998/me/actions/workflows/deploy.yaml/badge.svg)](https://github.com/kmtym1998/me/actions/workflows/deploy.yaml)
+[![deploy](https://github.com/kmtym1998/me/actions/workflows/deploy.yml/badge.svg)](https://github.com/kmtym1998/me/actions/workflows/deploy.yml)
 
 ## setup
 
