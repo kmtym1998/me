@@ -1,5 +1,5 @@
 import { Card } from 'antd';
-import type { Metadata } from '../articlesConfig/type';
+import type { Metadata } from '../configs/articles/type';
 import 'antd/dist/antd.css';
 
 type Props = {
