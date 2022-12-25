@@ -1,14 +1,15 @@
 # me
 
-## 🧞 Commands
+[![Deploy](https://github.com/kmtym1998/me/actions/workflows/deploy.yaml/badge.svg)](https://github.com/kmtym1998/me/actions/workflows/deploy.yaml)
 
-All commands are run from the root of the project, from a terminal:
+## setup
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+```sh
+# 依存関係をインストール
+$ npm install
+
+# 開発用サーバを立ち上げ
+$ npm run dev
+```
+
+https://github.com/kmtym1998/me/actions/workflows/deploy.yaml/badge.svg
